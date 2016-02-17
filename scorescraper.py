@@ -56,6 +56,10 @@ def getcbbthread(urlname,secret,token):
     except:
         visiting_reddit_name = ''
     try:
+        visiting_flair = df[df[1]==visiting_yahoo_name].iloc[0][6]
+    except:
+        visiting_flair = ''
+    try:
         visiting_radio_url = df[df[1]==visiting_yahoo_name].iloc[0][4]
     except:
         visiting_radio_url = ''
@@ -80,6 +84,10 @@ def getcbbthread(urlname,secret,token):
         home_reddit_name = df[df[1]==home_yahoo_name].iloc[0][2]
     except:
         home_reddit_name = ''
+    try:
+        home_flair = df[df[1]==home_yahoo_name].iloc[0][6]
+    except:
+        home_flair = ''
     try:
         home_radio_url = df[df[1]==home_yahoo_name].iloc[0][4]
     except:
@@ -130,7 +138,7 @@ def getcbbthread(urlname,secret,token):
     title = '[Game Thread] ' + visiting_rank  + visiting_team_name + ' at ' + home_rank  + home_team_name + ' (' + date_time + ')'
 
     body = '###NCAA Basketball' + '\n' + ' ' + '\n' + '---' \
-    + '\n' + '[](/' + visiting_reddit_name + ') **' + visiting_rank +visiting_team_name+'** '+visiting_team_record+' at ' + '[](/' + home_reddit_name + ') **'  + home_rank+ home_team_name+'** '+home_team_record   \
+    + '\n' + visiting_flair + ' **' + visiting_rank +visiting_team_name+'** '+visiting_team_record+' at ' + home_flair + ' **'  + home_rank+ home_team_name+'** '+home_team_record   \
     + '\n' + ' ' + '\n' + '**Tipoff:** '+ date_time + '\n' +  ' ' \
     + '\n' +  '**Venue:** '+stadium + '\n' +  ' ' \
     + '\n' +  '-----------------------------------------------------------------' + '\n' +  ' ' \
