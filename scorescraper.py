@@ -69,7 +69,8 @@ def getcbbthread(urlname,secret,token):
     except:
         visiting_subreddit = ''
     try:	
-        visiting_rank = rankdf[rankdf.reddit_name == '[](/' + visiting_reddit_name + ')'].iloc[0][0] + ' '
+#       visiting_rank = rankdf[rankdf.reddit_name == '[](/' + visiting_reddit_name + ')'].iloc[0][0] + ' '
+        visiting_rank = '(' + tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="name"]/a/text()')[0].rstrip(' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.()').lstrip('(') + ' Seed) '
     except:
         visiting_rank = ''
     #visiting_team_record = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
@@ -99,7 +100,8 @@ def getcbbthread(urlname,secret,token):
     except:
         home_subreddit = ''
     try:	
-        home_rank = rankdf[rankdf.reddit_name == '[](/' + home_reddit_name + ')'].iloc[0][0] + ' '
+#       home_rank = rankdf[rankdf.reddit_name == '[](/' + home_reddit_name + ')'].iloc[0][0] + ' '
+        home_rank = '(' + tree.xpath('//div[@class="team home"]/div[@class="team-info"]/div[@class="name"]/a/text()')[0].rstrip(' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.()').lstrip('(') + ' Seed) '
     except:
         home_rank = ''
     #home_team_record = tree.xpath('//div[@class="team home"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
@@ -142,10 +144,10 @@ def getcbbthread(urlname,secret,token):
 
     subreddit = 'collegebasketball'
 
-    title = '[Game Thread] ' + visiting_rank  + visiting_team_name + ' vs ' + home_rank  + home_team_name + ' (' + date_time + ')' + ' ' + tourney
+    title = '[Game Thread] ' + visiting_rank  + visiting_team_name + ' vs. ' + home_rank  + home_team_name + ' (' + date_time + ')' + ' ' + tourney
 
     body = '###NCAA Basketball' + '\n' + ' ' + '\n' + '---' \
-    + '\n' + visiting_flair + ' **' + visiting_rank +visiting_team_name+'** '+visiting_team_record+' at ' + home_flair + ' **'  + home_rank+ home_team_name+'** '+home_team_record   \
+    + '\n' + visiting_flair + ' **' + visiting_rank +visiting_team_name+'** '+visiting_team_record+' vs. ' + home_flair + ' **'  + home_rank+ home_team_name+'** '+home_team_record   \
     + '\n' + ' ' + '\n' + '**Tipoff:** '+ date_time + '\n' +  ' ' \
     + '\n' +  '**Venue:** '+stadium + '\n' +  ' ' \
     + '\n' +  '-----------------------------------------------------------------' + '\n' +  ' ' \
