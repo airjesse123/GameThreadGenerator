@@ -72,8 +72,8 @@ def getcbbthread(urlname,secret,token):
         visiting_rank = rankdf[rankdf.reddit_name == '[](/' + visiting_reddit_name + ')'].iloc[0][0] + ' '
     except:
         visiting_rank = ''
-    visiting_team_record = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
-    visiting_team_logo = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
+    #visiting_team_record = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
+    #visiting_team_logo = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
     if visiting_radio_url == '':
         visiting_radio_name = ''
     else:
@@ -101,8 +101,8 @@ def getcbbthread(urlname,secret,token):
         home_rank = rankdf[rankdf.reddit_name == '[](/' + home_reddit_name + ')'].iloc[0][0] + ' '
     except:
         home_rank = ''
-    home_team_record = tree.xpath('//div[@class="team home"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
-    home_team_logo = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
+    #home_team_record = tree.xpath('//div[@class="team home"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
+    #home_team_logo = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
     if home_subreddit=='' and visiting_subreddit=='':
         subreddits = ''
     elif home_subreddit=='' or visiting_subreddit=='':
