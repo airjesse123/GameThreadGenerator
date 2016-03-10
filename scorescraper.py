@@ -73,6 +73,7 @@ def getcbbthread(urlname,secret,token):
     except:
         visiting_rank = ''
     #visiting_team_record = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
+    visiting_team_record = ''
     #visiting_team_logo = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
     if visiting_radio_url == '':
         visiting_radio_name = ''
@@ -102,6 +103,7 @@ def getcbbthread(urlname,secret,token):
     except:
         home_rank = ''
     #home_team_record = tree.xpath('//div[@class="team home"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
+    home_team_record = ''
     #home_team_logo = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
     if home_subreddit=='' and visiting_subreddit=='':
         subreddits = ''
