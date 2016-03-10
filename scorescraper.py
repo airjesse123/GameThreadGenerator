@@ -124,6 +124,10 @@ def getcbbthread(urlname,secret,token):
     except:
         tv = '    No TV'    
     try:
+        tourney = tree.xpath('//span[@class="tournament-name"]/text()')[0]
+    except:
+        tourney = '' 
+    try:
         odds_favorite = tree.xpath('//li[@class="odds-ps-name\"]/text()')[0]
     except:
         odds_favorite = 'Odds not set'
@@ -138,7 +142,7 @@ def getcbbthread(urlname,secret,token):
 
     subreddit = 'collegebasketball'
 
-    title = '[Game Thread] ' + visiting_rank  + visiting_team_name + ' at ' + home_rank  + home_team_name + ' (' + date_time + ')'
+    title = '[Game Thread] ' + visiting_rank  + visiting_team_name + ' vs ' + home_rank  + home_team_name + ' (' + date_time + ')' + ' ' + tourney
 
     body = '###NCAA Basketball' + '\n' + ' ' + '\n' + '---' \
     + '\n' + visiting_flair + ' **' + visiting_rank +visiting_team_name+'** '+visiting_team_record+' at ' + home_flair + ' **'  + home_rank+ home_team_name+'** '+home_team_record   \
