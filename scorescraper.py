@@ -119,7 +119,7 @@ def getcbbthread(urlname,secret,token):
         home_radio_name = home_reddit_name
 
     pre_time = tree.xpath('//li[@class="status"]/text()')[0]
-    date_time = datetime.strptime(pre_time[5:-7], "%b %d %H:%M").strftime("%-H:%M") + pre_time[-7:-4] + ' EST'
+    date_time = datetime.strptime(pre_time[5:-7], "%b %d %H:%M").strftime("%-H:%M") + pre_time[-7:-4] + ' EDT'
     stadium = tree.xpath('//li[@class="stadium"]/span/text()')[0]
     try:
         tv = tree.xpath('//li[@class="left"]/ul/li/text()')[0]
@@ -198,6 +198,6 @@ def main(url,secret,token):
     import pandas as pd
     (timedeltas,urls) = scorescraper.getgametimes(url)
     df = pd.DataFrame({'timedeltas': timedeltas, 'urls': urls})
-    df2 = df[df['timedeltas'].between(51,60)]
+    df2 = df[df['timedeltas'].between(111,120)]
     for index, row in df2.iterrows():
         scorescraper.getcbbthread(row['urls'],secret,token)
