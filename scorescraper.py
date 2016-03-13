@@ -16,7 +16,7 @@ def getgametimes(urlname):
     URLs = tree.xpath('//tr[@class="game pre link"]//td[@class="score"]//@href')
     if not URLs:
         URLs = tree.xpath('//td[@class="score"]//@href')
-    time_deltas = [(datetime.strptime(x, '%I:%M %p')-datetime.utcnow()+timedelta(hours=5)).seconds/60 for x in gametime2]
+    time_deltas = [(datetime.strptime(x, '%I:%M %p')-datetime.utcnow()+timedelta(hours=4)).seconds/60 for x in gametime2]
 #   time_deltas2 = list(scorescraper.rename_duplicates(time_deltas))
     return (time_deltas,URLs)    
 #   return (time_deltas2,URLs)    
@@ -198,6 +198,6 @@ def main(url,secret,token):
     import pandas as pd
     (timedeltas,urls) = scorescraper.getgametimes(url)
     df = pd.DataFrame({'timedeltas': timedeltas, 'urls': urls})
-    df2 = df[df['timedeltas'].between(111,120)]
+    df2 = df[df['timedeltas'].between(51,60)]
     for index, row in df2.iterrows():
         scorescraper.getcbbthread(row['urls'],secret,token)
