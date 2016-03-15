@@ -146,7 +146,7 @@ def getcbbthread(urlname,secret,token):
     except:
         odds_ou = 'NA'
 
-    subreddit = 'airjesse'
+    subreddit = 'collegebasketball'
 
     title = '[Game Thread] ' + visiting_rank  + visiting_team_name + ' vs. ' + home_rank  + home_team_name + ' (' + date_time + ')' + ' ' + tourney
 
