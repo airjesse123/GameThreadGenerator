@@ -70,9 +70,11 @@ def getcbbthread(urlname,secret,token):
         visiting_subreddit = ''
     try:	
 #       visiting_rank = rankdf[rankdf.reddit_name == '[](/' + visiting_reddit_name + ')'].iloc[0][0] + ' '
-        visiting_rank = '(' + tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="name"]/a/text()')[0].rstrip(' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.&-()\'').lstrip('(') + ' Seed) '
+        visiting_rank = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="name"]/a/text()')[0].rstrip(' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.&-()\'').lstrip('(')
     except:
         visiting_rank = ''
+    if visiting_rank != '':
+        visiting_rank = '('  + visiting_rank + ' Seed) '
     #visiting_team_record = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
     visiting_team_record = ''
     #visiting_team_logo = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
@@ -101,9 +103,11 @@ def getcbbthread(urlname,secret,token):
         home_subreddit = ''
     try:	
 #       home_rank = rankdf[rankdf.reddit_name == '[](/' + home_reddit_name + ')'].iloc[0][0] + ' '
-        home_rank = '(' + tree.xpath('//div[@class="team home"]/div[@class="team-info"]/div[@class="name"]/a/text()')[0].rstrip(' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.&-()\'').lstrip('(') + ' Seed) '
+        home_rank = tree.xpath('//div[@class="team home"]/div[@class="team-info"]/div[@class="name"]/a/text()')[0].rstrip(' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.&-()\'').lstrip('(')
     except:
         home_rank = ''
+    if home_rank != '':
+        home_rank = '('  + home_rank + ' Seed) '
     #home_team_record = tree.xpath('//div[@class="team home"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
     home_team_record = ''
     #home_team_logo = tree.xpath('//div[@class="team away"]/div[@class="team-info"]/div[@class="rank"]/text()')[0]
@@ -142,7 +146,7 @@ def getcbbthread(urlname,secret,token):
     except:
         odds_ou = 'NA'
 
-    subreddit = 'collegebasketball'
+    subreddit = 'airjesse'
 
     title = '[Game Thread] ' + visiting_rank  + visiting_team_name + ' vs. ' + home_rank  + home_team_name + ' (' + date_time + ')' + ' ' + tourney
 
