@@ -126,13 +126,25 @@ def getcbbthread(urlname,secret,token):
     date_time = datetime.strptime(pre_time[5:-7], "%b %d %H:%M").strftime("%-H:%M") + pre_time[-7:-4] + ' EDT'
     stadium = tree.xpath('//li[@class="stadium"]/span/text()')[0]
     try:
-        tv = tree.xpath('//li[@class="left"]/ul/li/text()')[0]
+        tv = tree.xpath('//li[@class="left"]/ul/li/text()')[0].replace("CBS", "[](#f/cbs)").replace("TRU", "[](#f/trutv)").replace("TNT", "[](#f/tnt)").replace("TBS", "[](#f/tbs)")
     except:
         tv = '    No TV'    
     try:
         tourney = tree.xpath('//span[@class="tournament-name"]/text()')[0]
     except:
         tourney = '' 
+    if tourney == 'NIT':
+        tourney_flair = '[](#f/nit)'
+    elif tourney == 'NCAA Tournament':
+        tourney_flair = '[March Madness](#f/marchmadness)'
+    elif tourney == 'College Basketball Invitational':
+        tourney_flair = '[](#f/cbi)'
+    elif tourney == 'CollegeInsider.com Postseason Tournament':
+        tourney_flair = '[](#f/cit)'
+    elif tourney == 'Vegas 16':
+        tourney_flair = '[](#f/vegas16)'
+    else:
+        tourney_flair = tourney
     try:
         odds_favorite = tree.xpath('//li[@class="odds-ps-name\"]/text()')[0]
     except:
@@ -148,18 +160,19 @@ def getcbbthread(urlname,secret,token):
 
     subreddit = 'collegebasketball'
 
-    title = '[Game Thread] ' + visiting_rank  + visiting_team_name + ' vs. ' + home_rank  + home_team_name + ' (' + date_time + ')' + ' ' + tourney
+    title = '[Game Thread] ' + visiting_rank  + visiting_team_name + ' vs. ' + home_rank  + home_team_name + ' (Approx. ' + date_time + ')' + ' ' + tourney
 
     body = '###NCAA Basketball' + '\n' + ' ' + '\n' + '---' \
     + '\n' + visiting_flair + ' **' + visiting_rank +visiting_team_name+'** '+visiting_team_record+' vs. ' + home_flair + ' **'  + home_rank+ home_team_name+'** '+home_team_record   \
-    + '\n' + ' ' + '\n' + '**Tipoff:** '+ date_time + '\n' +  ' ' \
-    + '\n' +  '**Venue:** '+stadium + '\n' +  ' ' \
+    + '\n' + ' ' + '\n' + '**Tipoff:** Approx. '+ date_time + '\n' +  ' ' \
+    + '\n' +  '**Venue:** '+stadium + '\n'  +  ' ' + '\n' +  ' ' +  '**Event:** ' \
+    + '\n' + tourney_flair+ '\n' +  ' ' \
     + '\n' +  '-----------------------------------------------------------------' + '\n' +  ' ' \
     + '\n' +  '**[Join the live IRC chat on freenode, #redditcbb](http://webchat.freenode.net/?channels=#redditcbb)**' \
     + '\n' +  ' '     \
     + '\n' +  '-----------------------------------------------------------------' + '\n' +  ' ' \
     + '\n' +  '**Television:** ' + '\n' +  tv[4:] + '\n' +  ' ' + '\n' +  '**Streams:** ' \
-    + '\n' +  '[IsTheGameOn?](http://isthegameon.com/)' + '\n' +  ' ' \
+    + '\n' +  '[IsTheGameOn?](http://isthegameon.com/)' + '\n' +  ' '  \
     + '\n' +  '**Radio:** ' + '\n' +  '[' + visiting_radio_name + '](http://tunein.com' + visiting_radio_url + ')' + '\n'  +  ' ' \
     + '  [' + home_radio_name + '](http://tunein.com' + home_radio_url + ')' + '\n'  +  ' ' \
     + '\n' +  '**Preview/Follow:**' + '\n' +  '[Yahoo!](http://sports.yahoo.com'+urlname+')' \
@@ -175,7 +188,7 @@ def getcbbthread(urlname,secret,token):
     + '\n' + '\n' + '- [Follow @redditCBB](https://twitter.com/redditCBB) on twitter for news, updates, and bad attempts at humor.' \
     + subreddits \
     + '\n' +  ' ' + '\n' +  '----------------------------------------------------------------- ' \
-    + '\n' + '\n' + '\n' + '\n' + 'Beep Boop. I am a bot. Please message /u/airjesse with any feedback for me.   ' \
+    + '\n' + '\n' + '\n' + '\n' + 'Beep Boop. I am a bot. Please message /u/airjesse with any feedback for me.   ' 
 
 
     scorescraper.posttoreddit(subreddit,title,body,secret,token)
