@@ -126,7 +126,7 @@ def getcbbthread(urlname,secret,token):
     date_time = datetime.strptime(pre_time[5:-7], "%b %d %H:%M").strftime("%-H:%M") + pre_time[-7:-4] + ' EDT'
     stadium = tree.xpath('//li[@class="stadium"]/span/text()')[0]
     try:
-        tv = tree.xpath('//li[@class="left"]/ul/li/text()')[0].replace("CBS", "[](#f/cbs)").replace("TRU", "[](#f/trutv)").replace("TNT", "[](#f/tnt)").replace("TBS", "[](#f/tbs)")
+        tv = tree.xpath('//li[@class="left"]/ul/li/text()')[0].replace("CBS", "[CSB](#f/cbs)").replace("TRU", "[TRU](#f/trutv)").replace("TNT", "[TNT](#f/tnt)").replace("TBS", "[TBS](#f/tbs)")
     except:
         tv = '    No TV'    
     try:
@@ -134,15 +134,15 @@ def getcbbthread(urlname,secret,token):
     except:
         tourney = '' 
     if tourney == 'NIT':
-        tourney_flair = '[](#f/nit)'
+        tourney_flair = '[NIT](#f/nit)'
     elif tourney == 'NCAA Tournament':
         tourney_flair = '[March Madness](#f/marchmadness)'
     elif tourney == 'College Basketball Invitational':
-        tourney_flair = '[](#f/cbi)'
+        tourney_flair = '[CBI](#f/cbi)'
     elif tourney == 'CollegeInsider.com Postseason Tournament':
-        tourney_flair = '[](#f/cit)'
+        tourney_flair = '[CIT](#f/cit)'
     elif tourney == 'Vegas 16':
-        tourney_flair = '[](#f/vegas16)'
+        tourney_flair = '[Vegas 16](#f/vegas16)'
     else:
         tourney_flair = tourney
     try:
