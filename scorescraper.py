@@ -126,7 +126,7 @@ def getcbbthread(urlname,secret,token):
     date_time = datetime.strptime(pre_time[5:-7], "%b %d %H:%M").strftime("%-H:%M") + pre_time[-7:-4] + ' EDT'
     stadium = tree.xpath('//li[@class="stadium"]/span/text()')[0]
     try:
-        tv = tree.xpath('//li[@class="left"]/ul/li/text()')[0].replace("CBS", "[CSB](#f/cbs)").replace("TRU", "[TRU](#f/trutv)").replace("TNT", "[TNT](#f/tnt)").replace("TBS", "[TBS](#f/tbs)")
+        tv = tree.xpath('//li[@class="left"]/ul/li/text()')[0].replace("CBS", "[CBS](#f/cbs)").replace("TRU", "[TRU](#f/trutv)").replace("TNT", "[TNT](#f/tnt)").replace("TBS", "[TBS](#f/tbs)")
     except:
         tv = '    No TV'    
     try:
